@@ -1,0 +1,11 @@
+﻿@model mvEscalada.ViewModels.LocationViewModel
+
+<h1>@Model.Title</h1>
+
+@foreach (Location location in Model.Locations)
+{
+    <div>
+        <h2>@location.Name</h2>
+        <h3>@location.WebsiteUrl</h3>
+    </div>
+}

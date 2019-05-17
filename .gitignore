@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/config/applicationhost.config
+/.vs/mvEscalada/v15
+/mvEscalada/bin/Debug/netcoreapp2.1
+/mvEscalada/obj
+/mvEscalada/wwwroot/lib/bootstrap
+/mvEscalada/wwwroot/lib
