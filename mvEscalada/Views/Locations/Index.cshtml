@@ -14,7 +14,7 @@
         {
             <tr key=@location.Id>
                 <td>@location.Name</td>
-                <td><a href="locations/@location.Id">&nbsp;Topo&nbsp;</a></td>
+                <td><a asp-controller="Locations" asp-action="Topo" asp-route-locationId="@location.Id">&nbsp;Topo&nbsp;</a></td>
                 <td><a href="http://@location.WebsiteUrl">@location.WebsiteUrl</a></td>
             </tr>
         }

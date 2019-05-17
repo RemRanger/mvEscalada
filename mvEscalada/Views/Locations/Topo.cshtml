@@ -1,0 +1,38 @@
+﻿@model mvEscalada.ViewModels.RouteViewModel
+
+<h1>@Model.Title</h1>
+
+<p>@Model.Location.Name</p>
+<table class="grid">
+    <thead>
+        <tr>
+            <th colSpan="2">Route</th>
+            <th>Rating</th>
+            <th align="left">Location</th>
+            <th><img src="~/images/result-finish.png" alt="" /></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Route r in Model.Routes)
+        {
+            <tr>
+                <td width="16" style="background-color: @r.Color"></td>
+                <td>@r.Name</td>
+                <td>@r.Rating</td>
+                <td>@r.Sublocation</td>
+                @if (@r.Result == 0 && (@r.Percentage ?? 0) != 0)
+                {
+                    <td style="color:red">@(r.Percentage ?? 0)%</td>
+                }
+                else
+                {
+                    <td align="center">
+                        @if (Utils.GetResultPic(r.Result) != null)
+                            {<img src="@Utils.GetResultPic(@r.Result)" alt="" />}
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<p><a href=@Model.Api>API</a></p>

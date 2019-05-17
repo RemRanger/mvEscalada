@@ -22,7 +22,7 @@ namespace mvEscalada.Models
             return locations;
         }
 
-        public string GetLocationsApi() => "https://www.remranger.com/escalada-api/location-read.php";
+        public string GetLocationsApi() => Utils.GetApiUrl("location", "read");
 
         public IEnumerable<Location> GetLocations()
         {
