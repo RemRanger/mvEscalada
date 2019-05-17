@@ -14,10 +14,10 @@
                 <img src="~/favicon.ico" style="vertical-align:middle" height="32" />
                 <span style="color:purple; font-weight:800">&nbsp;&nbsp;&Xi;SC&Lambda;L&Lambda;D&Lambda;&nbsp;</span>
             </li>
-            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-area="" asp-controller="Locations" asp-action="Index">Locations</a></li>
-            <li><a asp-area="" asp-controller="Users" asp-action="Index">Climbers</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Index" class="@(@Context.Request.Path == "/" ? "active" : "")">Home</a></li>
+            <li><a asp-area="" asp-controller="Locations" asp-action="Index" class="@(@Context.Request.Path == "/Locations" ? "active" : "")">Locations</a></li>
+            <li><a asp-area="" asp-controller="Users" asp-action="Index" class="@(@Context.Request.Path == "/Users" ? "active" : "")">Climbers</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="About"class="@(@Context.Request.Path == "/Home/About" ? "active" : "")">About</a></li>
         </ul>
     </div>
 

@@ -1,26 +1,41 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using mvEscalada.Models;
+using mvEscalada.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using mvEscalada.Models;
 
 namespace mvEscalada.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IAttemptRepository attemptRepository;
+
+        public HomeController(IAttemptRepository attemptRepository)
+        {
+            this.attemptRepository = attemptRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Attempt> attempts = this.attemptRepository.GetAttempts();
+
+            HomeViewModel viewModel = new HomeViewModel()
+            {
+                Title = "Latest activity",
+                AttemptGroups = attempts.GroupBy(a => new { a.SessionId, a.UserId }).Select(g => new AttemptGroup
+                {
+                    SessionId = g.Key.SessionId,
+                    UserId = g.Key.UserId,
+                    Attempts = g.ToList()
+                }).ToList(),
+                Api = this.attemptRepository.GetAttemptsApi()
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult About()
-        {
-            return View();
-        }
-
-        public IActionResult Locations()
         {
             return View();
         }
