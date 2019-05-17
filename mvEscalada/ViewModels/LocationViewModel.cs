@@ -7,5 +7,7 @@ namespace mvEscalada.ViewModels
     {
         public string Title { get; set; }
         public List<Location> Locations { get; set; }
+        public string Api { get; set; }
+
     }
 }

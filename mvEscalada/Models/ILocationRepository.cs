@@ -8,6 +8,7 @@ namespace mvEscalada.Models
     public interface ILocationRepository
     {
         IEnumerable<Location> GetLocations();
+        string GetLocationsApi();
         Location GetLocationById(long id);
     }
 }

@@ -1,27 +1,40 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace mvEscalada.Models
 {
     public class LocationRepository : ILocationRepository
     {
-        private List<Location> locations = new List<Location>
+        private List<Location> locations = null;
+
+        public async Task<IEnumerable<Location>> RetrieveLocationsFromApi()
         {
-            new Location {Id = 1, Name = "Klimhal Bommeleskonte", WebsiteUrl = "www.klimhalbommeleskonte.nl"},
-            new Location {Id = 2, Name = "Boulderhal Zuurstof", WebsiteUrl = "www.boulderhalzuurstof.nl"},
-            new Location {Id = 3, Name = "Compact Boulderhal", WebsiteUrl = "www.compactboulderhal.nl"}
-        };
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(GetLocationsApi());
+            response.EnsureSuccessStatusCode();
+            string json = await response.Content.ReadAsStringAsync();
+
+            IEnumerable<Location> locations = JsonConvert.DeserializeObject<IEnumerable<Location>>(json);
+
+            return locations;
+        }
+
+        public string GetLocationsApi() => "https://www.remranger.com/escalada-api/location-read.php";
 
         public IEnumerable<Location> GetLocations()
         {
+            if (this.locations == null)
+                locations = RetrieveLocationsFromApi().Result.ToList();
+
             return this.locations;
         }
 
         public Location GetLocationById(long id)
         {
-            return locations.FirstOrDefault(l => l.Id == id);
+            return GetLocations().FirstOrDefault(l => l.Id == id);
         }
 
     }

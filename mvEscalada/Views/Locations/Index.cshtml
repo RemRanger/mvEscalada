@@ -2,10 +2,22 @@
 
 <h1>@Model.Title</h1>
 
-@foreach (Location location in Model.Locations)
-{
-    <div>
-        <h2>@location.Name</h2>
-        <h3>@location.WebsiteUrl</h3>
-    </div>
-}
+<table class="grid">
+    <thead>
+        <tr>
+            <th colSpan="2">Location</th>
+            <th>Website</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Location location in Model.Locations)
+        {
+            <tr key=@location.Id>
+                <td>@location.Name</td>
+                <td><a href="locations/@location.Id">&nbsp;Topo&nbsp;</a></td>
+                <td><a href="http://@location.WebsiteUrl">@location.WebsiteUrl</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p><a href=@Model.Api>API</a></p>

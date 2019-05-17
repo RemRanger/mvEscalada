@@ -24,7 +24,8 @@ namespace mvEscalada.Controllers
             LocationViewModel viewModel = new LocationViewModel()
             {
                 Title = "Locations",
-                Locations = locations.ToList()
+                Locations = locations.ToList(),
+                Api = this.locationRepository.GetLocationsApi()
             };
 
             return View(viewModel);
