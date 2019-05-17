@@ -1,0 +1,21 @@
+﻿@model mvEscalada.ViewModels.UserViewModel
+
+<h1>@Model.Title</h1>
+
+<table class="grid">
+    <thead>
+        <tr>
+            <th colSpan="2">Climber</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (User user in Model.Users)
+        {
+        <tr>
+            <td width="16" style="background-color: @(user.Gender == "F" ? "violet" : "blue")"></td>
+            <td>@user.FirstName @user.LastName</td>
+        </tr>
+        }
+    </tbody>
+</table>
+<p><a href=@Model.Api>API</a></p>

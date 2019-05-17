@@ -34,6 +34,7 @@ namespace mvEscalada
 
             services.AddTransient<ILocationRepository, LocationRepository>();
             services.AddTransient<IRouteRepository, RouteRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

@@ -12,7 +12,7 @@
     <tbody>
         @foreach (Location location in Model.Locations)
         {
-            <tr key=@location.Id>
+            <tr>
                 <td>@location.Name</td>
                 <td><a asp-controller="Locations" asp-action="Topo" asp-route-locationId="@location.Id">&nbsp;Topo&nbsp;</a></td>
                 <td><a href="http://@location.WebsiteUrl">@location.WebsiteUrl</a></td>
